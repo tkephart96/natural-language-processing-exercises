@@ -130,12 +130,8 @@ def get_all_blog_articles(from_cache=True):
             response = requests.get(url,headers=get_header())
             # soup it
             soup = BeautifulSoup(response.content,'html.parser')
-            # get content
-            soup_div = soup.find_all('div',class_='entry-content')
-            # soup content div
-            soups = BeautifulSoup(f'{soup_div[0]}','html.parser')
             # get content into empty list
-            content = ''.join(element.text for element in soups.find_all('p'))
+            content = soup.find('div', class_="entry-content").text
             # make blog a dict
             blog = {
                 'title':soup.title.text,
@@ -162,12 +158,8 @@ def get_all_blog_articles(from_cache=True):
                     response = requests.get(url,headers=get_header())
                     # soup it
                     soup = BeautifulSoup(response.content,'html.parser')
-                    # get content
-                    soup_div = soup.find_all('div',class_='entry-content')
-                    # soup content div
-                    soups = BeautifulSoup(f'{soup_div[0]}','html.parser')
                     # get content into empty list
-                    content = ''.join(element.text for element in soups.find_all('p'))
+                    content = soup.find('div', class_="entry-content").text
                     # make blog a dict
                     blog = {
                         'title':soup.title.text,
