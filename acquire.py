@@ -135,7 +135,8 @@ def get_all_blog_articles(from_cache=True):
             # make blog a dict
             blog = {
                 'title':soup.title.text,
-                'content':content
+                'content':content,
+                'category':', '.join([element.text for element in soup.find_all('a', rel='category tag')])
                 }
             # append to list of blogs
             blogs.append(blog)
@@ -163,7 +164,8 @@ def get_all_blog_articles(from_cache=True):
                     # make blog a dict
                     blog = {
                         'title':soup.title.text,
-                        'content':content
+                        'content':content,
+                        'category':', '.join([element.text for element in soup.find_all('a', rel='category tag')])
                         }
                     # append to list of blogs
                     blogs.append(blog)
